@@ -4,7 +4,6 @@
     <HeroSection />
     <FeaturedCategories />
     <BestSellers />
-    <SeasonalOffers />
     <AboutUs />
     <Testimonials />
     <DeliveryInfo />

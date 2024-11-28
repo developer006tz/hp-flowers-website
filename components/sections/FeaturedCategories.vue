@@ -1,3 +1,4 @@
+<!-- components/sections/FeaturedCategories.vue -->
 <template>
   <section id="categories" class="py-24 bg-gradient-to-b from-white to-pink-50/30">
     <div class="container mx-auto px-4">
@@ -33,11 +34,24 @@
              :enter="{ opacity: 1, y: 0, transition: { delay: index * 200 } }"
              class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
           
-          <!-- Category Image with Overlay -->
-          <div class="aspect-[4/5] overflow-hidden">
-            <img :src="category.image" 
-                 :alt="category.title"
-                 class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" />
+          <!-- Category Video with Overlay -->
+          <div class="aspect-[4/5] overflow-hidden bg-gray-100 relative">
+            <!-- Loading Spinner -->
+            <div v-if="!videoLoadedStates[index]" 
+                 class="absolute inset-0 flex items-center justify-center bg-gray-100/80 z-10">
+              <div class="w-8 h-8 border-4 border-hp-pink border-t-transparent rounded-full animate-spin"></div>
+            </div>
+
+            <video 
+              :ref="el => videoRefs[index] = el"
+              class="w-full h-full object-cover transform group-hover:scale-110 transition-all duration-700"
+              :class="{ 'opacity-0': !videoLoadedStates[index], 'opacity-100': videoLoadedStates[index] }"
+              :src="category.video"
+              muted
+              loop
+              playsinline
+              @loadeddata="handleVideoLoaded(index)"
+            />
             
             <!-- Gradient Overlay -->
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500">
@@ -81,28 +95,76 @@
 </template>
 
 <script setup>
+import { ref, onMounted, onUnmounted } from 'vue'
+import { flowerVideo1, flowerVideo2, flowerVideo3, flowerVideo4 } from '@/store/videos'
+
+const videoRefs = ref([])
+const videoLoadedStates = ref(new Array(4).fill(false))
+const autoplayInterval = ref(null)
+
 const categories = [
   {
     title: 'Wedding Flowers',
     description: 'Make your special day truly magical with our elegant wedding collections',
-    image: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed'
+    video: flowerVideo1
   },
   {
     title: 'Birthday Bouquets',
     description: 'Celebrate life\'s special moments with our stunning arrangements',
-    image: 'https://images.unsplash.com/photo-1561181286-d3fee7d55364'
+    video: flowerVideo2
   },
   {
     title: 'Anniversary Gifts',
     description: 'Express your eternal love with our romantic flower selections',
-    image: 'https://images.unsplash.com/photo-1562690868-60bbe7293e94'
+    video: flowerVideo3
   },
   {
     title: 'Custom Arrangements',
     description: 'Create your perfect bouquet with our bespoke design service',
-    image: 'https://images.unsplash.com/photo-1583228858294-6745cb25969e'
+    video: flowerVideo4
   }
 ]
+
+const handleVideoLoaded = async (index) => {
+  videoLoadedStates.value[index] = true
+  try {
+    await videoRefs.value[index].play()
+  } catch (error) {
+    console.log(`Autoplay failed for video ${index}:`, error)
+  }
+}
+
+const setupVideoPlayback = () => {
+  autoplayInterval.value = setInterval(() => {
+    videoRefs.value.forEach((videoRef, index) => {
+      if (videoRef && videoLoadedStates.value[index] && videoRef.paused) {
+        videoRef.play().catch(error => {
+          console.log(`Playback check failed for video ${index}:`, error)
+        })
+      }
+    })
+  }, 3000)
+}
+
+onMounted(() => {
+  categories.forEach((_, index) => {
+    if (videoRefs.value[index]) {
+      videoRefs.value[index].load()
+    }
+  })
+  setupVideoPlayback()
+})
+
+onUnmounted(() => {
+  if (autoplayInterval.value) {
+    clearInterval(autoplayInterval.value)
+  }
+  videoRefs.value.forEach(videoRef => {
+    if (videoRef && !videoRef.paused) {
+      videoRef.pause()
+    }
+  })
+})
 
 const categoryIcons = [
   { path: 'M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9' },

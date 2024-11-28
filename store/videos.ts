@@ -31,3 +31,40 @@ export const flowerVideo30 = "https://res.cloudinary.com/dcmwnrvzk/video/upload/
 export const flowerVideo31 = "https://res.cloudinary.com/dcmwnrvzk/video/upload/v1732781154/6_720p_nxnfqu.mp4";
 export const flowerVideo32 = "https://res.cloudinary.com/dcmwnrvzk/video/upload/v1732781154/3_720p_o2uxzs.mp4";
 export const flowerVideo33 = "https://res.cloudinary.com/dcmwnrvzk/video/upload/v1732781152/1_720p_pql1dx.mp4";
+
+
+export const flowerStockVideos = [
+    flowerVideo1,
+    flowerVideo2,
+    flowerVideo3,
+    flowerVideo4,
+    flowerVideo5,
+    flowerVideo6,
+    flowerVideo7,
+    flowerVideo8,
+    flowerVideo9,
+    flowerVideo10,
+    flowerVideo11,
+    flowerVideo12,
+    flowerVideo13,
+    flowerVideo14,
+    flowerVideo15,
+    flowerVideo16,
+    flowerVideo17,
+    flowerVideo18,
+    flowerVideo19,
+    flowerVideo20,
+    flowerVideo21,
+    flowerVideo22,
+    flowerVideo23,
+    flowerVideo24,
+    flowerVideo25,
+    flowerVideo26,
+    flowerVideo27,
+    flowerVideo28,
+    flowerVideo29,
+    flowerVideo30,
+    flowerVideo31,
+    flowerVideo32,
+    flowerVideo33,
+    ];

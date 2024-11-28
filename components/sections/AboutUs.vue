@@ -1,44 +1,160 @@
 <template>
-  <section id="about" class="py-20">
-    <div class="container mx-auto px-4">
-      <div class="grid md:grid-cols-2 gap-12 items-center">
-        <div v-motion-slide-visible-once-left>
-          <img src="https://images.unsplash.com/photo-1558024920-b41e1887dc32" 
-               alt="About Us"
-               class="rounded-2xl shadow-xl" />
+  <section class="relative py-32 overflow-hidden bg-gradient-to-b from-white to-pink-50/30">
+    <!-- Background Decorative Elements -->
+    <div class="absolute inset-0 bg-white/40 backdrop-blur-sm"></div>
+    
+    <div class="container mx-auto px-4 relative">
+      <div class="grid md:grid-cols-2 gap-16 items-center">
+        <!-- Video Column -->
+        <div class="relative" 
+             v-motion
+             :initial="{ opacity: 0, x: -50 }"
+             :enter="{ opacity: 1, x: 0, transition: { duration: 800 } }">
+          <!-- Video Container with Loading State -->
+          <div class="relative rounded-[2rem] overflow-hidden aspect-[4/5] bg-gray-100 shadow-2xl">
+            <div v-if="!isVideoLoaded" 
+                 class="absolute inset-0 flex items-center justify-center bg-gray-100 z-10">
+              <div class="w-8 h-8 border-4 border-hp-pink border-t-transparent rounded-full animate-spin"></div>
+            </div>
+            
+            <video 
+              ref="videoRef"
+              class="w-full h-full object-cover transition-opacity duration-700"
+              :class="{ 'opacity-0': !isVideoLoaded, 'opacity-100': isVideoLoaded }"
+              :src="flowerVideo9"
+              muted
+              loop
+              playsinline
+              @loadeddata="handleVideoLoaded"
+            />
+
+            <!-- Decorative Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-60"></div>
+          </div>
+
+          <!-- Decorative Elements -->
+          <div class="absolute -top-8 -left-8 w-48 h-48 bg-hp-pink/10 rounded-full blur-2xl"></div>
+          <div class="absolute -bottom-8 -right-8 w-48 h-48 bg-hp-pink/10 rounded-full blur-2xl"></div>
         </div>
-        <div v-motion-slide-visible-once-right>
-          <h2 class="text-4xl font-display font-bold mb-6">Our Story</h2>
-          <p class="text-xl text-gray-600 mb-6">
-            At HP FlowerPatch, we believe in the power of flowers to bring joy and beauty to every moment. 
-            Our passion for creating stunning arrangements drives us to source the freshest blooms and 
-            deliver happiness to your doorstep.
+
+        <!-- Content Column -->
+        <div v-motion
+             :initial="{ opacity: 0, x: 50 }"
+             :enter="{ opacity: 1, x: 0, transition: { duration: 800, delay: 200 } }"
+             class="relative">
+          <span class="text-hp-pink font-medium mb-4 block">Our Journey</span>
+          <h2 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+            Crafting Beauty,<br />Delivering Joy
+          </h2>
+          <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+            At HP FlowerPatch, we believe in the transformative power of flowers. 
+            Our passion lies in creating stunning arrangements that bring joy and 
+            beauty to every moment of your life. Each bloom is carefully selected 
+            and arranged with artistic precision to create unforgettable experiences.
           </p>
-          <ul class="space-y-4 mb-8">
-            <li class="flex items-center space-x-3">
-              <svg class="w-6 h-6 text-hp-pink" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
-              <span>Premium Quality Flowers</span>
-            </li>
-            <li class="flex items-center space-x-3">
-              <svg class="w-6 h-6 text-hp-pink" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
-              <span>Expert Florists</span>
-            </li>
-            <li class="flex items-center space-x-3">
-              <svg class="w-6 h-6 text-hp-pink" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
-              <span>Same Day Delivery</span>
-            </li>
-          </ul>
-          <button class="bg-hp-green text-white px-8 py-3 rounded-full hover:bg-hp-pink transition-colors">
-            Learn More
-          </button>
+
+          <!-- Features Grid -->
+          <div class="grid grid-cols-2 gap-6 mb-10">
+            <div v-for="feature in features" 
+                 :key="feature.title"
+                 class="flex items-start space-x-3 group">
+              <div class="mt-1 flex-shrink-0">
+                <div class="w-8 h-8 rounded-full bg-hp-pink/10 flex items-center justify-center group-hover:bg-hp-pink group-hover:scale-110 transition-all duration-300">
+                  <component 
+                    :is="feature.icon" 
+                    class="w-4 h-4 text-hp-pink"
+                  />
+                </div>
+              </div>
+              <div>
+                <h3 class="font-semibold mb-1">{{ feature.title }}</h3>
+                <p class="text-sm text-gray-500">{{ feature.description }}</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- CTA Button -->
+          <NuxtLink 
+            to="/contact"
+            class="inline-flex items-center space-x-2 bg-hp-pink text-white px-8 py-3 rounded-full hover:bg-hp-green transition-all duration-300 transform hover:scale-105"
+          >
+            <span>Get in Touch</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </NuxtLink>
         </div>
       </div>
     </div>
   </section>
 </template>
+
+<script setup lang="ts">
+import { ref, onMounted, onUnmounted } from 'vue'
+import { flowerVideo9 } from '@/store/videos'
+import { 
+  Leaf, 
+  Clock, 
+  HeartHandshake,
+  Truck
+} from 'lucide-vue-next'
+
+const videoRef = ref<HTMLVideoElement | null>(null)
+const isVideoLoaded = ref(false)
+const playbackInterval = ref<ReturnType<typeof setInterval> | null>(null)
+
+const features = [
+  {
+    title: 'Premium Quality',
+    description: 'Hand-picked fresh flowers sourced daily',
+    icon: Leaf
+  },
+  {
+    title: '24/7 Service',
+    description: 'Round-the-clock customer support',
+    icon: Clock
+  },
+  {
+    title: 'Expert Care',
+    description: 'Skilled florists with years of experience',
+    icon: HeartHandshake
+  },
+  {
+    title: 'Fast Delivery',
+    description: 'Same-day delivery available',
+    icon: Truck
+  }
+]
+
+const handleVideoLoaded = async () => {
+  isVideoLoaded.value = true
+  if (videoRef.value) {
+    try {
+      await videoRef.value.play()
+    } catch (error) {
+      console.error('Video autoplay failed:', error)
+    }
+  }
+}
+
+const setupVideoPlayback = () => {
+  playbackInterval.value = setInterval(() => {
+    if (videoRef.value?.paused) {
+      videoRef.value.play().catch(console.error)
+    }
+  }, 3000)
+}
+
+onMounted(() => {
+  setupVideoPlayback()
+})
+
+onUnmounted(() => {
+  if (playbackInterval.value) {
+    clearInterval(playbackInterval.value)
+  }
+  if (videoRef.value && !videoRef.value.paused) {
+    videoRef.value.pause()
+  }
+})
+</script>
