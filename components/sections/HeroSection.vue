@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import { heroImage } from '~/store/images';
+</script>
+
 <template>
   <section id="home"  class="pt-2 min-h-screen relative bg-gradient-to-b from-white to-pink-200">
         <div class="container mx-auto px-4 py-20 flex flex-col md:flex-row items-center">
@@ -17,8 +21,8 @@
               </button>
             </div>
           </div>
-          <div class="md:w-1/2 -mt-36 md:mt-0">
-            <img src="https://res.cloudinary.com/dcmwnrvzk/image/upload/v1732288113/photo-1561181286-d3fee7d55364-removebg-preview_kxtqww.png" alt="Beautiful Flowers" class="rounded-lg shadow-none transform hover:scale-105 transition-transform" />
+          <div class="md:w-1/2 pt-12 md:pt-0 -rotate-45">
+            <img :src="heroImage" alt="Beautiful Flowers" class="rounded-lg shadow-none transform hover:scale-105 transition-transform" />
           </div>
         </div>
 

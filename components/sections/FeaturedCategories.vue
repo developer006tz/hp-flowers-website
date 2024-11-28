@@ -3,7 +3,7 @@
     <div class="container mx-auto px-4">
       <!-- Section Header with Decorative Elements -->
       <div class="text-center mb-16 relative">
-        <div class="absolute left-1/2 -translate-x-1/2 top-0 w-20 h-1 bg-[#CC202A]"></div>
+        <div class="absolute left-1/2 -translate-x-1/2 top-0 w-20 h-1 bg-hp-pink"></div>
         <h2 class="text-4xl md:text-5xl font-bold mt-8 mb-4">
           Explore Our Collections
         </h2>
@@ -46,7 +46,7 @@
             <!-- Content -->
             <div class="absolute inset-0 p-6 flex flex-col justify-end transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
               <!-- Decorative Line -->
-              <div class="w-12 h-1 bg-[#CC202A] mb-4 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 delay-100"></div>
+              <div class="w-12 h-1 bg-hp-pink mb-4 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 delay-100"></div>
               
               <!-- Title -->
               <h3 class="text-2xl font-bold text-white mb-2 transform -translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-200">
@@ -59,7 +59,7 @@
               </p>
               
               <!-- Button -->
-              <button class="w-full md:w-auto bg-white text-[#CC202A] hover:bg-[#CC202A] hover:text-white px-6 py-3 rounded-full transition-all duration-300 transform opacity-0 group-hover:opacity-100 delay-400 flex items-center justify-center space-x-2">
+              <button class="w-full md:w-auto bg-white text-hp-pink hover:bg-hp-pink hover:text-white px-6 py-3 rounded-full transition-all duration-300 transform opacity-0 group-hover:opacity-100 delay-400 flex items-center justify-center space-x-2">
                 <span>Explore Collection</span>
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -70,7 +70,7 @@
 
           <!-- Category Icon -->
           <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm p-3 rounded-full transform rotate-12 group-hover:rotate-0 transition-all duration-500">
-            <svg class="w-6 h-6 text-[#CC202A]" :class="categoryIcons[index]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-6 h-6 text-hp-pink" :class="categoryIcons[index]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :d="categoryIcons[index].path" />
             </svg>
           </div>

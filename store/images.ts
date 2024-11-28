@@ -1,0 +1,1 @@
+export const heroImage = "https://res.cloudinary.com/dcmwnrvzk/image/upload/v1732783333/image-a_cpjlqi-removebg-preview_cbjjjl.png";
