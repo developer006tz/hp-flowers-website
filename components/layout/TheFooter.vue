@@ -20,7 +20,7 @@
             <div>
               <h3 class="text-lg font-semibold mb-4">Contact</h3>
               <ul class="space-y-2 text-gray-400">
-                <li>ezekiel.edith@gmail.com</li>
+                <li>info@hptagency.co.tz</li>
                 <li>+255 742 551 552</li>
                 <li>hptagency.co.tz</li>
               </ul>
