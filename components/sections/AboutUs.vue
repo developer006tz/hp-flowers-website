@@ -1,5 +1,5 @@
 <template>
-  <section class="relative py-32 overflow-hidden bg-gradient-to-b from-white to-pink-50/30">
+  <section class="relative py-32 overflow-hidden bg-gradient-to-b from-white to-green-50/30">
     <!-- Background Decorative Elements -->
     <div class="absolute inset-0 bg-white/40 backdrop-blur-sm"></div>
     
@@ -14,7 +14,7 @@
           <div class="relative rounded-[2rem] overflow-hidden aspect-[4/5] bg-gray-100 shadow-2xl">
             <div v-if="!isVideoLoaded" 
                  class="absolute inset-0 flex items-center justify-center bg-gray-100 z-10">
-              <div class="w-8 h-8 border-4 border-hp-pink border-t-transparent rounded-full animate-spin"></div>
+              <div class="w-8 h-8 border-4 border-green-600 border-t-transparent rounded-full animate-spin"></div>
             </div>
             
             <video 
@@ -33,8 +33,8 @@
           </div>
 
           <!-- Decorative Elements -->
-          <div class="absolute -top-8 -left-8 w-48 h-48 bg-hp-pink/10 rounded-full blur-2xl"></div>
-          <div class="absolute -bottom-8 -right-8 w-48 h-48 bg-hp-pink/10 rounded-full blur-2xl"></div>
+          <div class="absolute -top-8 -left-8 w-48 h-48 bg-green-600/10 rounded-full blur-2xl"></div>
+          <div class="absolute -bottom-8 -right-8 w-48 h-48 bg-green-600/10 rounded-full blur-2xl"></div>
         </div>
 
         <!-- Content Column -->
@@ -42,15 +42,15 @@
              :initial="{ opacity: 0, x: 50 }"
              :enter="{ opacity: 1, x: 0, transition: { duration: 800, delay: 200 } }"
              class="relative">
-          <span class="text-hp-pink font-medium mb-4 block">Our Journey</span>
+          <span class="text-green-600 font-medium mb-4 block">Your Garden Journey</span>
           <h2 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-            Crafting Beauty,<br />Delivering Joy
+            Growing Beauty,<br />Naturally
           </h2>
           <p class="text-lg text-gray-600 mb-8 leading-relaxed">
-            At HP FlowerPatch, we believe in the transformative power of flowers. 
-            Our passion lies in creating stunning arrangements that bring joy and 
-            beauty to every moment of your life. Each bloom is carefully selected 
-            and arranged with artistic precision to create unforgettable experiences.
+            At Garden Blooms, we cultivate plants that thrive in your garden. 
+            Each plant is nurtured with care, selected for your local climate, 
+            and comes with expert guidance to ensure it flourishes in your outdoor space. 
+            Transform your garden into a sustainable haven of natural beauty.
           </p>
 
           <!-- Features Grid -->
@@ -59,10 +59,10 @@
                  :key="feature.title"
                  class="flex items-start space-x-3 group">
               <div class="mt-1 flex-shrink-0">
-                <div class="w-8 h-8 rounded-full bg-hp-pink/10 flex items-center justify-center group-hover:bg-hp-pink group-hover:scale-110 transition-all duration-300">
+                <div class="w-8 h-8 rounded-full bg-green-600/10 flex items-center justify-center group-hover:bg-green-600 group-hover:scale-110 transition-all duration-300">
                   <component 
                     :is="feature.icon" 
-                    class="w-4 h-4 text-hp-pink"
+                    class="w-4 h-4 text-green-600"
                   />
                 </div>
               </div>
@@ -75,10 +75,10 @@
 
           <!-- CTA Button -->
           <NuxtLink 
-            to="/contact"
-            class="inline-flex items-center space-x-2 bg-hp-pink text-white px-8 py-3 rounded-full hover:bg-hp-green transition-all duration-300 transform hover:scale-105"
+            to="/garden-collection"
+            class="inline-flex items-center space-x-2 bg-green-600 text-white px-8 py-3 rounded-full hover:bg-green-700 transition-all duration-300 transform hover:scale-105"
           >
-            <span>Get in Touch</span>
+            <span>Explore Plants</span>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
@@ -93,10 +93,10 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { flowerVideo9 } from '@/store/videos'
 import { 
-  Leaf, 
-  Clock, 
-  HeartHandshake,
-  Truck
+  Sprout, 
+  Sun, 
+  Leaf,
+  Calendar
 } from 'lucide-vue-next'
 
 const videoRef = ref<HTMLVideoElement | null>(null)
@@ -105,24 +105,24 @@ const playbackInterval = ref<ReturnType<typeof setInterval> | null>(null)
 
 const features = [
   {
-    title: 'Premium Quality',
-    description: 'Hand-picked fresh flowers sourced daily',
+    title: 'Garden-Ready Plants',
+    description: 'Healthy, mature plants ready for your garden',
+    icon: Sprout
+  },
+  {
+    title: 'Seasonal Varieties',
+    description: 'Plants chosen for your growing zone',
+    icon: Calendar
+  },
+  {
+    title: 'Growing Support',
+    description: 'Expert guidance for plant care success',
     icon: Leaf
   },
   {
-    title: '24/7 Service',
-    description: 'Round-the-clock customer support',
-    icon: Clock
-  },
-  {
-    title: 'Expert Care',
-    description: 'Skilled florists with years of experience',
-    icon: HeartHandshake
-  },
-  {
-    title: 'Fast Delivery',
-    description: 'Same-day delivery available',
-    icon: Truck
+    title: 'Climate Adapted',
+    description: 'Species selected for local conditions',
+    icon: Sun
   }
 ]
 

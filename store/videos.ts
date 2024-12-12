@@ -6,8 +6,8 @@ export const flowerVideo5 = "https://res.cloudinary.com/dcmwnrvzk/video/upload/v
 export const flowerVideo6 = "https://res.cloudinary.com/dcmwnrvzk/video/upload/v1732781182/21_720p_mqkejk.mp4";
 export const flowerVideo7 = "https://res.cloudinary.com/dcmwnrvzk/video/upload/v1732781182/31_720p_t0vsu2.mp4";
 export const flowerVideo8 = "https://res.cloudinary.com/dcmwnrvzk/video/upload/v1732781180/23_720p_k3rbgc.mp4";
-export const flowerVideo9 = "https://res.cloudinary.com/dcmwnrvzk/video/upload/v1732781180/25_720p_xsjcva.mp4";
-export const flowerVideo10 = "https://res.cloudinary.com/dcmwnrvzk/video/upload/v1732781180/25_720p_xsjcva.mp4";
+export const flowerVideo9 = "https://res.cloudinary.com/dcmwnrvzk/video/upload/v1732786726/9_720p_480p_iplf2g.mp4";
+export const flowerVideo10 = "https://res.cloudinary.com/dcmwnrvzk/video/upload/v1732781189/32_720p_wbitee.mp4";
 export const flowerVideo11 = "https://res.cloudinary.com/dcmwnrvzk/video/upload/v1732781176/27_720p_ap7cxq.mp4";
 export const flowerVideo12 = "https://res.cloudinary.com/dcmwnrvzk/video/upload/v1732781172/24_720p_f6knzy.mp4";
 export const flowerVideo13 = "https://res.cloudinary.com/dcmwnrvzk/video/upload/v1732781172/19_720p_ohyhun.mp4";
@@ -34,27 +34,7 @@ export const flowerVideo33 = "https://res.cloudinary.com/dcmwnrvzk/video/upload/
 
 
 export const flowerStockVideos = [
-    flowerVideo1,
-    flowerVideo2,
-    flowerVideo3,
-    flowerVideo4,
-    flowerVideo5,
-    flowerVideo6,
-    flowerVideo7,
-    flowerVideo8,
-    flowerVideo9,
-    flowerVideo10,
-    flowerVideo11,
-    flowerVideo12,
-    flowerVideo13,
-    flowerVideo14,
-    flowerVideo15,
-    flowerVideo16,
-    flowerVideo17,
-    flowerVideo18,
-    flowerVideo19,
-    flowerVideo20,
-    flowerVideo21,
+
     flowerVideo22,
     flowerVideo23,
     flowerVideo24,

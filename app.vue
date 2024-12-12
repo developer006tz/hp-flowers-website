@@ -6,7 +6,6 @@
     <BestSellers />
     <AboutUs />
     <Testimonials />
-    <DeliveryInfo />
     <ContactNewsletter />
     <TheFooter />
   </div>

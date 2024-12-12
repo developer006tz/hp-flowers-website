@@ -1,1 +1,2 @@
 export const heroImage = "https://res.cloudinary.com/dcmwnrvzk/image/upload/v1732783333/image-a_cpjlqi-removebg-preview_cbjjjl.png";
+export const fallbackImage = "https://res.cloudinary.com/dcmwnrvzk/image/upload/v1732786992/image-a_bxvfox.avif";

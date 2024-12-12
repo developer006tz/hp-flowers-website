@@ -1,4 +1,3 @@
-<!-- components/sections/BestSellers.vue -->
 <template>
   <section class="py-24 bg-gradient-to-b from-white via-pink-50/20 to-white">
     <div class="container mx-auto px-4">
@@ -10,11 +9,11 @@
       </div>
 
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-        <div v-for="(video, index) in videos" 
-             :key="index"
+        <div v-for="(category, index) in categories" 
+             :key="category.id"
              v-motion
-             :initial="{ opacity: 0, y: 50 }"
-             :enter="{ opacity: 1, y: 0, transition: { delay: index * 100 } }"
+             :initial="{ opacity: 0, y: 100 }"
+             :enter="{ opacity: 1, y: 0, transition: { delay: index * 200 } }"
              class="group relative">
           
           <div class="aspect-square rounded-2xl overflow-hidden bg-gray-100 relative shadow-lg hover:shadow-2xl transition-all duration-500">
@@ -51,51 +50,45 @@
   </section>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
-import { flowerStockVideos } from '@/store/videos'
+import { flowerVideo1, flowerVideo2, flowerVideo3, flowerVideo4,flowerVideo5,flowerVideo6,flowerVideo7,flowerVideo8,flowerVideo9,flowerVideo10,flowerVideo11,flowerVideo12 } from '@/store/videos'
 
-interface VideoRefs {
-  [key: number]: HTMLVideoElement | null;
-}
 
-// Using proper types for refs
-const videoRefs = ref<VideoRefs>({})
-const videoLoadedStates = ref<boolean[]>([])
-const autoplayInterval = ref<ReturnType<typeof setInterval> | null>(null)
+const videoRefs = ref([])
+const videoLoadedStates = ref(new Array(4).fill(false))
+const autoplayInterval = ref(null)
 
-const videos = flowerStockVideos
+const categories = [
+  { id: 1, video: flowerVideo1 },
+  { id: 2, video: flowerVideo2 },
+  { id: 3, video: flowerVideo3 },
+  { id: 4, video: flowerVideo4 },
+  { id: 5, video: flowerVideo5 },
+  { id: 6, video: flowerVideo6 },
+  { id: 7, video: flowerVideo7 },
+  { id: 8, video: flowerVideo8 },
+  { id: 9, video: flowerVideo9 },
+  { id: 10, video: flowerVideo10 },
+  { id: 11, video: flowerVideo11 },
+  { id: 12, video: flowerVideo12 }
+]
 
-// Initialize state array with the correct length
-videoLoadedStates.value = new Array(videos.length).fill(false)
-
-const handleVideoRef = (el: unknown, index: number) => {
-  if (el instanceof HTMLVideoElement || el === null) {
-    videoRefs.value[index] = el
-  }
-}
-
-const handleVideoLoaded = async (index: number) => {
+const handleVideoLoaded = async (index) => {
   videoLoadedStates.value[index] = true
-  const videoRef = videoRefs.value[index]
-  
-  if (videoRef instanceof HTMLVideoElement) {
-    try {
-      await videoRef.play()
-    } catch (error) {
-      console.error(`Autoplay failed for video ${index}:`, error)
-    }
+  try {
+    await videoRefs.value[index].play()
+  } catch (error) {
+    console.log(`Autoplay failed for video ${index}:`, error)
   }
 }
 
 const setupVideoPlayback = () => {
   autoplayInterval.value = setInterval(() => {
-    Object.entries(videoRefs.value).forEach(([index, videoRef]) => {
-      if (videoRef instanceof HTMLVideoElement && 
-          videoLoadedStates.value[Number(index)] && 
-          videoRef.paused) {
+    videoRefs.value.forEach((videoRef, index) => {
+      if (videoRef && videoLoadedStates.value[index] && videoRef.paused) {
         videoRef.play().catch(error => {
-          console.error(`Playback check failed for video ${index}:`, error)
+          console.log(`Playback check failed for video ${index}:`, error)
         })
       }
     })
@@ -103,6 +96,11 @@ const setupVideoPlayback = () => {
 }
 
 onMounted(() => {
+  categories.forEach((_, index) => {
+    if (videoRefs.value[index]) {
+      videoRefs.value[index].load()
+    }
+  })
   setupVideoPlayback()
 })
 
@@ -110,9 +108,8 @@ onUnmounted(() => {
   if (autoplayInterval.value) {
     clearInterval(autoplayInterval.value)
   }
-  
-  Object.values(videoRefs.value).forEach(videoRef => {
-    if (videoRef instanceof HTMLVideoElement && !videoRef.paused) {
+  videoRefs.value.forEach(videoRef => {
+    if (videoRef && !videoRef.paused) {
       videoRef.pause()
     }
   })

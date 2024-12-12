@@ -1,8 +1,6 @@
-<!-- components/sections/FeaturedCategories.vue -->
 <template>
   <section id="categories" class="py-24 bg-gradient-to-b from-white to-pink-50/30">
     <div class="container mx-auto px-4">
-      <!-- Section Header with Decorative Elements -->
       <div class="text-center mb-16 relative">
         <div class="absolute left-1/2 -translate-x-1/2 top-0 w-20 h-1 bg-hp-pink"></div>
         <h2 class="text-4xl md:text-5xl font-bold mt-8 mb-4">
@@ -12,7 +10,6 @@
           Discover our carefully curated selection of beautiful floral arrangements, 
           each designed to create unforgettable moments
         </p>
-        <!-- Decorative Flowers -->
         <div class="absolute -top-4 left-4 md:left-20 transform -rotate-45 opacity-20">
           <svg width="40" height="40" viewBox="0 0 24 24" fill="#CC202A">
             <path d="M12,2L15.5,9L22,9L17,14L19,21L12,17L5,21L7,14L2,9L8.5,9L12,2Z" />
@@ -25,7 +22,6 @@
         </div>
       </div>
 
-      <!-- Categories Grid -->
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 px-2">
         <div v-for="(category, index) in categories" 
              :key="category.title"
@@ -34,9 +30,7 @@
              :enter="{ opacity: 1, y: 0, transition: { delay: index * 200 } }"
              class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
           
-          <!-- Category Video with Overlay -->
           <div class="aspect-[4/5] overflow-hidden bg-gray-100 relative">
-            <!-- Loading Spinner -->
             <div v-if="!videoLoadedStates[index]" 
                  class="absolute inset-0 flex items-center justify-center bg-gray-100/80 z-10">
               <div class="w-8 h-8 border-4 border-hp-pink border-t-transparent rounded-full animate-spin"></div>
@@ -53,21 +47,16 @@
               @loadeddata="handleVideoLoaded(index)"
             />
             
-            <!-- Gradient Overlay -->
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500">
             </div>
 
-            <!-- Content -->
             <div class="absolute inset-0 p-6 flex flex-col justify-end transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-              <!-- Decorative Line -->
               <div class="w-12 h-1 bg-hp-pink mb-4 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 delay-100"></div>
               
-              <!-- Title -->
               <h3 class="text-2xl font-bold text-white mb-2 transform -translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-200">
                 {{ category.title }}
               </h3>
               
-              <!-- Description -->
               <p class="text-white/90 mb-6 transform -translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-300">
                 {{ category.description }}
               </p>
