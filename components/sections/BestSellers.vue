@@ -27,7 +27,7 @@
               :ref="(el) => handleVideoRef(el, index)"
               class="w-full h-full object-cover transition-opacity duration-500"
               :class="{ 'opacity-0': !videoLoadedStates[index], 'opacity-100': videoLoadedStates[index] }"
-              :src="video"
+              :src="category.video"
               muted
               loop
               playsinline
@@ -52,11 +52,10 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
-import { flowerVideo1, flowerVideo2, flowerVideo3, flowerVideo4,flowerVideo5,flowerVideo6,flowerVideo7,flowerVideo8,flowerVideo9,flowerVideo10,flowerVideo11,flowerVideo12 } from '@/store/videos'
-
+import { flowerVideo1, flowerVideo2, flowerVideo3, flowerVideo4, flowerVideo5, flowerVideo6, flowerVideo7, flowerVideo8, flowerVideo9, flowerVideo10, flowerVideo11, flowerVideo12 } from '@/store/videos'
 
 const videoRefs = ref([])
-const videoLoadedStates = ref(new Array(4).fill(false))
+const videoLoadedStates = ref(new Array(12).fill(false))
 const autoplayInterval = ref(null)
 
 const categories = [
@@ -73,6 +72,13 @@ const categories = [
   { id: 11, video: flowerVideo11 },
   { id: 12, video: flowerVideo12 }
 ]
+
+// Add the missing handleVideoRef function
+const handleVideoRef = (el, index) => {
+  if (el) {
+    videoRefs.value[index] = el
+  }
+}
 
 const handleVideoLoaded = async (index) => {
   videoLoadedStates.value[index] = true
